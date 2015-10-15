@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2015 The Hyve
+ * This file is distributed under the MIT License (see accompanying file LICENSE).
+ */
 package thehyve.sas;
 
 import java.io.FileInputStream;
@@ -24,6 +28,14 @@ import com.ggasoftware.parso.Column;
 import com.ggasoftware.parso.SasFileProperties;
 import com.ggasoftware.parso.SasFileReader;
 
+/**
+ * Command-line utility to convert files in SAS7BDAT format to 
+ * comma-separated format (CSV). 
+ * Based on the Parso library ({@link http://lifescience.opensource.epam.com/parso.html})
+ * and opencsv ({@link http://opencsv.sourceforge.net/})
+ * 
+ * @author gijs@thehyve.nl
+ */
 public class Convert {
 
     public static final String USAGE = "Usage: Convert <file.sas> <file.csv>";
