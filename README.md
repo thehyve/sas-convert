@@ -5,12 +5,12 @@ and [opencsv](http://opencsv.sourceforge.net).
 ### Build and run
 ```bash
 mvn package
-java -jar target/sas-convert-0.0.1-SNAPSHOT.jar <file.sas7bdat> <file.csv>
+java -jar target/sas-convert-0.1.jar <file.sas7bdat> <file.csv>
 ```
 
 ### Install in home directory
 ```bash
-cp target/sas-convert-0.0.1-SNAPSHOT.jar ~/bin/sas-convert.jar
+cp target/sas-convert-0.1.jar ~/bin/sas-convert.jar
 chmod +x ~/bin/sas-convert.jar
 ```
 If your `~/bin` directory is not in your path, add these lines to `~/.profile`:
