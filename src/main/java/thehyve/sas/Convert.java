@@ -22,11 +22,12 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import au.com.bytecode.opencsv.CSVWriter;
+import com.opencsv.CSVWriter;
 
-import com.ggasoftware.parso.Column;
-import com.ggasoftware.parso.SasFileProperties;
-import com.ggasoftware.parso.SasFileReader;
+import com.epam.parso.Column;
+import com.epam.parso.SasFileProperties;
+import com.epam.parso.SasFileReader;
+import com.epam.parso.impl.SasFileReaderImpl;
 
 /**
  * Command-line utility to convert files in SAS7BDAT format to 
@@ -40,10 +41,10 @@ public class Convert {
 
     public static final String USAGE = "Usage: Convert <file.sas> <file.csv>";
     Logger log = LoggerFactory.getLogger(getClass());
-    
+
     public void convert(InputStream in, OutputStream out) throws IOException {
         Date start = new Date();
-        SasFileReader reader = new SasFileReader(in);
+        SasFileReader reader = new SasFileReaderImpl(in);
         CSVWriter writer = new CSVWriter(new OutputStreamWriter(out));
         Object[] data;
         SasFileProperties properties = reader.getSasFileProperties();
