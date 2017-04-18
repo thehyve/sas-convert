@@ -1,4 +1,4 @@
-appender("stdout", ConsoleAppender) {
+appender("stderr", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
         pattern = "%d [%level] %msg%n"
     }
@@ -6,6 +6,7 @@ appender("stdout", ConsoleAppender) {
     filter(ch.qos.logback.classic.filter.ThresholdFilter) {
         level = INFO
     }
+    target = 'System.err'
 }
 
-root(INFO, ["stdout"])
+root(INFO, ["stderr"])

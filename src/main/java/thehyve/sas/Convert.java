@@ -39,8 +39,8 @@ import com.epam.parso.impl.SasFileReaderImpl;
  */
 public class Convert {
 
-    public static final String USAGE = "Usage: Convert <file.sas> <file.csv>";
-    Logger log = LoggerFactory.getLogger(getClass());
+    public static final String USAGE = "Usage: Convert <file.sas> [file.csv]";
+    private static final Logger log = LoggerFactory.getLogger(Convert.class);
 
     public void convert(InputStream in, OutputStream out) throws IOException {
         Date start = new Date();
@@ -98,17 +98,25 @@ public class Convert {
         try {
             CommandLine cl = parser.parse(options, args);
             if (cl.hasOption("help")) {
-                System.out.printf(USAGE + "\n");
+                System.err.printf(USAGE + "\n");
                 return;
             }
             List<String> argList = cl.getArgList();
-            if (argList.size() < 2) {
-                System.out.printf("Too few parameters.\n" + USAGE + "\n");
+            if (argList.size() < 1) {
+                System.err.printf("Too few parameters.\n" + USAGE + "\n");
                 return;
             }
             try {
                 FileInputStream fin = new FileInputStream(argList.get(0));
-                FileOutputStream fout = new FileOutputStream(argList.get(1));
+                OutputStream fout;
+                if (argList.size() > 1) {
+                    String out_filename = argList.get(1);
+                    log.info("Writing to file: {}", out_filename);
+                    fout = new FileOutputStream(out_filename);
+                } else {
+                    log.info("Writing to stdout.");
+                    fout = System.out;
+                }
                 Convert converter = new Convert();
                 converter.convert(fin, fout);
                 fin.close();
@@ -119,7 +127,7 @@ public class Convert {
                 e.printStackTrace();
             }
         } catch (ParseException e) {
-            System.out.printf(USAGE + "\n");
+            System.err.printf(USAGE + "\n");
             e.printStackTrace();
             return;
         }

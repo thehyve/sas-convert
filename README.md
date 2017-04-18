@@ -15,11 +15,11 @@ unzip sas-convert-0.3.zip
 ### Usage
 Usage:
 ```bash
-./sas-convert/sas-convert <file.sas7bdat> <file.csv>
+./sas-convert/sas-convert <file.sas7bdat> [file.csv]
 ```
 
 ### Build and run from source
 ```bash
 mvn package
-./sas-convert <file.sas7bdat> <file.csv>
+./sas-convert <file.sas7bdat> [file.csv]
 ```
