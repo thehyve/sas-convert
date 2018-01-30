@@ -18,6 +18,11 @@ Usage:
 ./sas-convert/sas-convert <file.sas7bdat> [file.csv]
 ```
 
+By default, the first three lines of output will describe the columns: labels, names, and formats, respecitively. To only output one line of header information containing just column names, use the `--only-column-names` or `-o` option:
+```bash
+./sas-convert/sas-convert -o <file.sas7bdat> [file.csv]
+```
+
 ### Build and run from source
 ```bash
 mvn package

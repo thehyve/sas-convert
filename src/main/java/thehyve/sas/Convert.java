@@ -39,10 +39,10 @@ import com.epam.parso.impl.SasFileReaderImpl;
  */
 public class Convert {
 
-    public static final String USAGE = "Usage: Convert <file.sas> [file.csv]";
+    public static final String USAGE = "Usage: Convert <file.sas> [file.csv]\n\nOptions:\n\n-o, --only-column-names\n       Only write column names before data rows (default is to write three header lines: labels, names, and formats)";
     private static final Logger log = LoggerFactory.getLogger(Convert.class);
 
-    public void convert(InputStream in, OutputStream out) throws IOException {
+    public void convert(InputStream in, OutputStream out, boolean onlyColumnNames) throws IOException {
         Date start = new Date();
         SasFileReader reader = new SasFileReaderImpl(in);
         CSVWriter writer = new CSVWriter(new OutputStreamWriter(out));
@@ -52,21 +52,25 @@ public class Convert {
         log.info(properties.getRowCount() + " rows.");
         List<Column> columns = reader.getColumns();
         String[] outData = new String[columns.size()];
-        // Writing column labels
-        for(int i=0; i < columns.size(); i++) {
-            outData[i] = columns.get(i).getLabel();
+        if (!onlyColumnNames) {
+            // Writing column labels
+            for(int i=0; i < columns.size(); i++) {
+                outData[i] = columns.get(i).getLabel();
+            }
+            writer.writeNext(outData);
         }
-        writer.writeNext(outData);
         // Writing column names
         for(int i=0; i < columns.size(); i++) {
             outData[i] = columns.get(i).getName();
         }
         writer.writeNext(outData);
-        // Writing column format
-        for(int i=0; i < columns.size(); i++) {
-            outData[i] = columns.get(i).getFormat();
+        if (!onlyColumnNames) {
+            // Writing column format
+            for(int i=0; i < columns.size(); i++) {
+                outData[i] = columns.get(i).getFormat();
+            }
+            writer.writeNext(outData);
         }
-        writer.writeNext(outData);
 
         try {
             log.info("Writing data...");
@@ -94,6 +98,7 @@ public class Convert {
     public static void main(String[] args) {
         Options options = new Options();
         options.addOption("h", "help", false, "Help");
+        options.addOption("o", "only-column-names", false, "Only column names");
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cl = parser.parse(options, args);
@@ -103,7 +108,7 @@ public class Convert {
             }
             List<String> argList = cl.getArgList();
             if (argList.size() < 1) {
-                System.err.printf("Too few parameters.\n" + USAGE + "\n");
+                System.err.printf("Too few parameters.\n\n" + USAGE + "\n");
                 return;
             }
             try {
@@ -118,7 +123,7 @@ public class Convert {
                     fout = System.out;
                 }
                 Convert converter = new Convert();
-                converter.convert(fin, fout);
+                converter.convert(fin, fout, cl.hasOption("only-column-names"));
                 fin.close();
                 fout.close();
             } catch (FileNotFoundException e) {
