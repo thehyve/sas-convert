@@ -23,6 +23,11 @@ By default, the first three lines of output will describe the columns: labels, n
 ./sas-convert/sas-convert -o <file.sas7bdat> [file.csv]
 ```
 
+By default, if you don't pass the second argument, the output is sent to stdout. If instead you'd like to save it to an automatically named file based on the name of the input file, the `--auto-create-csv` or `-a` option will save the output to my-filename.csv:
+```bash
+./sas-convert/sas-convert -a my-filename.sas7bdat
+```
+
 ### Build and run from source
 ```bash
 mvn package

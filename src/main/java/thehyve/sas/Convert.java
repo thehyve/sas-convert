@@ -39,7 +39,7 @@ import com.epam.parso.impl.SasFileReaderImpl;
  */
 public class Convert {
 
-    public static final String USAGE = "Usage: Convert <file.sas> [file.csv]\n\nOptions:\n\n-o, --only-column-names\n       Only write column names before data rows (default is to write three header lines: labels, names, and formats)";
+    public static final String USAGE = "Usage: sas-convert <file.sas> [file.csv]\n\nWhen only one filename is supplied, output will be sent to stdout.\n\nOptions:\n\n-o, --only-column-names\n       Only write column names before data rows (default is to write three\n       header lines: labels, names, and formats)\n\n-a, --auto-create-csv\n       Instead of sending output to stdout when only an input filename is\n       provided, this will save it to a file based on the name of the input file\n       (e.g. `sas-convert my-filename.sas7bdat` will produce my-filename.csv).";
     private static final Logger log = LoggerFactory.getLogger(Convert.class);
 
     public void convert(InputStream in, OutputStream out, boolean onlyColumnNames) throws IOException {
@@ -99,6 +99,7 @@ public class Convert {
         Options options = new Options();
         options.addOption("h", "help", false, "Help");
         options.addOption("o", "only-column-names", false, "Only column names");
+        options.addOption("a", "auto-create-csv", false, "Auto create CSV");
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cl = parser.parse(options, args);
@@ -110,12 +111,25 @@ public class Convert {
             if (argList.size() < 1) {
                 System.err.printf("Too few parameters.\n\n" + USAGE + "\n");
                 return;
+            } else if (argList.size() > 2) {
+                System.err.printf("Too many parameters.\n\n" + USAGE + "\n");
+                return;
             }
             try {
-                FileInputStream fin = new FileInputStream(argList.get(0));
+                String in_filename = argList.get(0);
+                FileInputStream fin = new FileInputStream(in_filename);
                 OutputStream fout;
                 if (argList.size() > 1) {
                     String out_filename = argList.get(1);
+                    log.info("Writing to file: {}", out_filename);
+                    fout = new FileOutputStream(out_filename);
+                } else if (cl.hasOption("auto-create-csv")) {
+                    String out_filename;
+                    if (in_filename.contains(".")) {
+                        out_filename = in_filename.replaceAll("\\.[^.]*$", ".csv");
+                    } else {
+                        out_filename = in_filename.concat(".csv");
+                    }
                     log.info("Writing to file: {}", out_filename);
                     fout = new FileOutputStream(out_filename);
                 } else {
