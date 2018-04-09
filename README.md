@@ -34,3 +34,10 @@ mvn package
 ./sas-convert <file.sas7bdat> [file.csv]
 ```
 
+
+## License
+
+Copyright &copy; 2015&ndash;2018 &nbsp; The Hyve.
+
+sas_convert is licensed under the MIT License. See the file [LICENSE](LICENSE).
+
