@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>thehyve</groupId>
     <artifactId>sas-convert</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

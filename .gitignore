@@ -6,3 +6,5 @@
 *.iml
 /dist/sas-convert
 /dist/*.zip
+dependency-reduced-pom.xml
+

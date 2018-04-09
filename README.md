@@ -4,12 +4,12 @@ and [opencsv](http://opencsv.sourceforge.net).
 
 ### Download
 The latest version can be downloaded here:
-[sas-convert-0.3.zip](https://github.com/thehyve/sas-convert/releases/download/0.3/sas-convert-0.3.zip).
+[sas-convert-0.4.zip](https://github.com/thehyve/sas-convert/releases/download/0.4/sas-convert-0.4.zip).
 
 ```bash
 # Download sas-convert
-curl -L https://github.com/thehyve/sas-convert/releases/download/0.3/sas-convert-0.3.zip -o sas-convert-0.3.zip
-unzip sas-convert-0.3.zip
+curl -L https://github.com/thehyve/sas-convert/releases/download/0.4/sas-convert-0.4.zip -o sas-convert-0.4.zip
+unzip sas-convert-0.4.zip
 ```
 
 ### Usage
@@ -33,3 +33,4 @@ By default, if you don't pass the second argument, the output is sent to stdout.
 mvn package
 ./sas-convert <file.sas7bdat> [file.csv]
 ```
+
