@@ -17,7 +17,7 @@ popd
 
 # copy files; create zip archive
 echo "Creating ${zip} ..."
-if [ -d "sas-convert" ]; then
+if [[ -d "sas-convert" ]]; then
     rm -r sas-convert
 fi
 mkdir sas-convert &&
