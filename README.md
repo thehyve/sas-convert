@@ -1,15 +1,16 @@
 # sas-convert
+
 Simple SAS7BDAT to CSV conversion tool based on the [Parso library](http://lifescience.opensource.epam.com/parso.html)
 and [opencsv](http://opencsv.sourceforge.net).
 
 ### Download
 The latest version can be downloaded here:
-[sas-convert-0.4.zip](https://github.com/thehyve/sas-convert/releases/download/0.4/sas-convert-0.4.zip).
+[sas-convert-0.5.zip](https://github.com/thehyve/sas-convert/releases/download/0.5/sas-convert-0.5.zip).
 
 ```bash
 # Download sas-convert
-curl -L https://github.com/thehyve/sas-convert/releases/download/0.4/sas-convert-0.4.zip -o sas-convert-0.4.zip
-unzip sas-convert-0.4.zip
+curl -L https://github.com/thehyve/sas-convert/releases/download/0.5/sas-convert-0.5.zip -o sas-convert-0.5.zip
+unzip sas-convert-0.5.zip
 ```
 
 ### Usage
