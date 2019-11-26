@@ -5,12 +5,12 @@ and [opencsv](http://opencsv.sourceforge.net).
 
 ### Download
 The latest version can be downloaded here:
-[sas-convert-0.5.zip](https://github.com/thehyve/sas-convert/releases/download/0.5/sas-convert-0.5.zip).
+[sas-convert-0.6.zip](https://github.com/thehyve/sas-convert/releases/download/0.6/sas-convert-0.6.zip).
 
 ```bash
 # Download sas-convert
-curl -L https://github.com/thehyve/sas-convert/releases/download/0.5/sas-convert-0.5.zip -o sas-convert-0.5.zip
-unzip sas-convert-0.5.zip
+curl -L https://github.com/thehyve/sas-convert/releases/download/0.6/sas-convert-0.6.zip -o sas-convert-0.6.zip
+unzip sas-convert-0.6.zip
 ```
 
 ### Usage
